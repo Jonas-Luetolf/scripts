@@ -22,3 +22,5 @@ print(",".join(new_names))
 if input("This are the new filenames, do you want to continue? (y|N)") == "y":
     for original, new in zip(original_names,new_names):
         os.system(f"mv {path}{original} {path}{new}")
+else:
+    print("exit by user")
