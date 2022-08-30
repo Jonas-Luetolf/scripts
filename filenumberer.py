@@ -31,7 +31,7 @@ def main():
     new_names=gen_filenames(original_names,"-a" in argv)
     print(",".join(new_names))
 
-    if input("This are the new filenames, do you want to continue? (y|N)") == "y":
+    if input("This are the new filenames, do you want to continue? (y|N)").lower() == "y":
         for original, new in zip(original_names,new_names):
             system(f"mv {path}{original} {path}{new}")
     else:
