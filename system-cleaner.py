@@ -16,8 +16,8 @@ def delete_folder_content(path:str):
 def main():
     print(delete_info)
     if input("Do you want to continue (y|N)").lower()=="y":
-        
-        delete_folder_content("~/Downloads")
+        for folder in folders_to_clear: 
+            delete_folder_content(folder)
     else:
         print("exit by user")
 

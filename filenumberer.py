@@ -33,7 +33,7 @@ def main():
 
     if input("This are the new filenames, do you want to continue? (y|N)").lower() == "y":
         for original, new in zip(original_names,new_names):
-            system(f"mv {path}{original} {path}{new}")
+            system(f"mv '{path}{original}' '{path}{new}'")
     else:
         print("exit by user")
 
