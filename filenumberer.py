@@ -1,41 +1,25 @@
-#Copyright (c) 2022 Jonas Lütolf
 #!/usr/bin/python
-from os import listdir,getcwd,system
-from os.path import isfile,splitext
-from sys import argv
+from os import listdir
+from os.path import isfile
+import os
 
-def get_filetype(filename:str)->str:
-    name,filetype=splitext(filename)
-    return filetype
+def get_filetype(filename:str):
+    filename="".join(list(reversed(filename)))
+    return ("".join(list(reversed(filename[0:filename.find(".")+1])))).lower()
     
-def get_filenumber(index:str,name_len:int)->str:
+def get_filename(index,name_len):
     zeros="0"*int(name_len-len(str(index)))
     return zeros+str(index)
 
-def gen_filenames(original_names:list,hold_name:bool):
-    new_names=[]
-    name_len=len(str(len(original_names)))
-    for index,name in enumerate(original_names):
-        if hold_name:
-            new_names.append(f"{get_filenumber(index,name_len)}_{name}")
-        else:
-            new_names.append(f"{get_filenumber(index,name_len)}{get_filetype(name)}")
+path=os.getcwd()+"/"
+files = [f for f in listdir(path) if isfile(path+f)]
+files.sort()
 
-    return new_names
+name_len=len(str(len(files)))
+new_names=[f"{get_filename(index,name_len)}{get_filetype(name)}" for index, name in enumerate(files)]
 
-def main():
-    path=getcwd()+"/"
-    original_names = [f for f in listdir(path) if isfile(path+f)]
-    original_names.sort()       
-        
-    new_names=gen_filenames(original_names,"-a" in argv)
-    print(",".join(new_names))
+print(",".join(new_names))
 
-    if input("This are the new filenames, do you want to continue? (y|N)").lower() == "y":
-        for original, new in zip(original_names,new_names):
-            system(f"mv '{path}{original}' '{path}{new}'")
-    else:
-        print("exit by user")
-
-if __name__=="__main__":
-    main()
+if input("This are the new filenames, do you want to continue? (y|N)") == "y":
+    for original, new in zip(files,new_names):
+        os.system(f"mv {path}{original} {path}{new}")
