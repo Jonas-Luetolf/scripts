@@ -1,6 +1,5 @@
-#!/bin/env bash
-
-SELECTEDNETWORK="$(echo "$(nmcli -f SSID dev wifi | tail -n +2)" | rofi -sep "\n" -dmenu)"
+#!/bin/bash
+SELECTEDNETWORK="$(echo "$(nmcli -f SSID dev wifi | tail -n +2)" | rofi -p 'Select network' -sep "\n" -dmenu)"
 
 echo $SELECTEDNETWORK
 
@@ -11,6 +10,6 @@ if [ "${info: -2}" = "--" ]; then
     nmcli dev wifi connect "${SELECTEDNETWORK%"${SELECTEDNETWORK##*[![:space:]]}"}"
 
 else
-    pass="$(rofi -dmenu)"
+    pass="$(rofi -dmenu -p 'Enter Password')"
     nmcli dev wifi connect "${SELECTEDNETWORK%"${SELECTEDNETWORK##*[![:space:]]}"}" password $pass 
 fi
