@@ -7,7 +7,7 @@ import re
 
 def is_valid_filename(file_path: Path) -> bool:
     file_name = file_path.name
-    return re.match(r'^\d{8}_\w+', file_name) is not None
+    return re.match(r"^\d{8}_\w+", file_name) is not None
 
 
 def create_file_table(files: list) -> dict:
@@ -23,7 +23,7 @@ def create_file_table(files: list) -> dict:
         year = date_str[:4]
         month = date_str[4:6]
 
-        # create dict structur
+        # create dict structure
         if year not in file_table:
             file_table[year] = {}
 
@@ -42,14 +42,13 @@ def main(argv: list) -> int:
 
     for year in file_table.keys():
         for month in file_table[year].keys():
-
             # create path if not exists
-            new_path = (path/year/month)
+            new_path = path / year / month
             new_path.mkdir(parents=True, exist_ok=True)
 
             for file in file_table[year][month]:
-                if not os.path.exists(new_path/file.name):
-                    file.rename(new_path/file.name)
+                if not os.path.exists(new_path / file.name):
+                    file.rename(new_path / file.name)
 
     return 0
 
