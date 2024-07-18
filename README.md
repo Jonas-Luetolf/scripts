@@ -11,7 +11,7 @@
 - imagesort
 * a script that sorts all files starting with a date in the YYYYMMDD format into corresponding folders. This script is intended to organize images but can be used for any file type.
 
-# rofi scripts
+## rofi scripts
 - nm-menu
 * a rofi script that allows you to connect to wifi networks. The script displays all available networks and asks you automaticly for the password if needed*
 
