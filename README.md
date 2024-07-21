@@ -12,6 +12,7 @@
 - nm-menu * a rofi script that allows you to connect to wifi networks. The script displays all available networks and asks you automaticly for the password if needed*
 - roficalt * a rofi script that allows you to do simple calculations*
 - ssh-menu * a rofi script that allows you to connect to a remote system via ssh. The script displays all known ssh host and lets you choose or add one.*
+- search * a rofi script that allows you to open a web search.*
 
 **all "normal" scripts are tested on Linux, they should also work on Windows and MacOS**
 **the rofi scripts of course only work on linux with rofi installed**
