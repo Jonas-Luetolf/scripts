@@ -1,12 +1,12 @@
 # Scripts
 **a repo with some helpfull scripts**
 
-
-
 ## the scripts
 - **filenumberer** *a script that numbers all files of a directory*
 - **rename** *a script that lets you rename all files in a folder and set a perfix for all filename*
-- **imagesort** *a script that sorts all files starting with a date in the YYYYMMDD format into corresponding folders. This script is intended to organize images but can be used for any file type.*
+- **dateprefixsort** *a script that sorts all files starting with a date in the YYYYMMDD format into corresponding folders. This script is intended to organize images but can be used for any file type.*
+- **imagerename** *a script that renames all image files after their exif date or os file creation date (with "--prefix" flag, the files get a date prefix and the number range is reset for each day) otherwise the number increases for each file begining with the oldes.*
+- **rmmeta** *a script that removes all Meta data from an PDF file*
 
 ## rofi scripts
 - **nm-menu** *a rofi script that allows you to connect to wifi networks. The script displays all available networks and asks you automaticly for the password if needed*
