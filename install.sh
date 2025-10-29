@@ -19,9 +19,6 @@ copy_and_rename() {
     done
 }
 
-# Copy and rename Python and Shell scripts from the current directory
-copy_and_rename "."
-
 # Copy and rename scripts from the rofi-scripts folder if it exists
 if [ -d "rofi-scripts" ]; then
     copy_and_rename "rofi-scripts"
