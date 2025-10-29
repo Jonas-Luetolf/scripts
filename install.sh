@@ -27,6 +27,10 @@ if [ -d "rofi-scripts" ]; then
     copy_and_rename "rofi-scripts"
 fi
 
+copy_and_rename "filescript"
+copy_and_rename "pdfocrpipeline"
+copy_and_rename "scientific"
+
 # Make scripts executable
 chmod +x "$TARGET_DIR"/*
 echo "All scripts have been copied to $TARGET_DIR, renamed without extensions, and made executable."
