@@ -1,3 +1,4 @@
+#!/bin/python3
 import sys
 
 assert len(sys.argv) == 2, "Usage: python easter.py <year>"
