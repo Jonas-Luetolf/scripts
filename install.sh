@@ -25,7 +25,7 @@ if [ -d "rofi-scripts" ]; then
 fi
 
 copy_and_rename "filescript"
-copy_and_rename "pdfocrpipeline"
+copy_and_rename "pdfscripts"
 copy_and_rename "scientific"
 copy_and_rename "other"
 
