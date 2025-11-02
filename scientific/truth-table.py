@@ -8,15 +8,15 @@ assert len(sys.argv) >= 2, "Usage: truth-table EXPRESSION"
 func = " ".join(sys.argv[1:])
 
 # aquivalents for not
-func = func.replace("!", "not")
+func = func.replace(" ! ", "not")
 
 # aquivalents for and
-func = func.replace("&", "and")
-func = func.replace("*", "and")
+func = func.replace(" & ", "and")
+func = func.replace(" * ", "and")
 
 # aquivalents for or
-func = func.replace("|", "or")
-func = func.replace("+", "or")
+func = func.replace(" | ", "or")
+func = func.replace(" + ", "or")
 
 #TODO: check expression validity
 
