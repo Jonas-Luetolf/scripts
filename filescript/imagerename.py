@@ -110,9 +110,7 @@ def main(path: Path, prefix=False, raw=False):
             "0" * (num_len - len(str(i))) + f"{i}{os.path.splitext(file)[-1].lower()}"
         )
 
-        # add prefix to the name if flag is set
-        if prefix:
-            new_name = date.strftime("%Y%m%d") + "_" + new_name
+        new_name = date.strftime("%Y%m%d") + "_" + new_name
 
         os.rename(path / file, path / new_name)
 
@@ -132,12 +130,12 @@ if __name__ == "__main__":
     try:
         assert len(sys.argv) > 2
         assert os.path.isdir(sys.argv[1])
-        assert all(flag in ["--prefix", "--raw"] for flag in sys.argv[2:])
+        assert all(flag in ["--raw"] for flag in sys.argv[2:])
 
     except AssertionError as exc:
         print("Please provide a valid path and flags")
         print(
-            "Usage: python imagerename.py <path> [--prefix; optional] [--raw; optional]"
+            "Usage: python imagerename.py <path> [--raw; optional]"
         )
         sys.exit(1)
 
