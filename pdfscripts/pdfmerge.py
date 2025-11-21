@@ -19,7 +19,8 @@ def main():
     inputs = sys.argv[2:]
     
     assert all(pathlib.isfile(inp) for inp in inputs), "Not all input files exist."
-
+    assert all(pathlib.Path(inp).suffix.lower() == '.pdf' for inp in inputs), "All input files must be PDF files."
+    
     merge_pdfs(output, inputs)
     print(f"Merged {len(inputs)} files into {output}")
 
