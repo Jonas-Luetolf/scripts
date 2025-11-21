@@ -12,7 +12,7 @@ def merge_pdfs(output, inputs):
 
 def main():
     if len(sys.argv) < 4:
-        print("Usage: python merge_pdfs.py output.pdf input1.pdf input2.pdf [input3.pdf ...]")
+        print("Usage: pdfmerge output.pdf input1.pdf input2.pdf [input3.pdf ...]")
         sys.exit(1)
 
     output = sys.argv[1]
@@ -26,3 +26,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
