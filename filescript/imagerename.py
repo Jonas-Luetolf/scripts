@@ -1,3 +1,4 @@
+#!/bin/python
 from pathlib import Path
 import os
 from datetime import datetime
@@ -11,6 +12,8 @@ from PIL.ExifTags import TAGS
 # all filetypes affectet by this script
 IMAGE_FILE_TYPES = [".JPG", ".PNG"]
 RAW_FILETYPE = ".CR2"
+
+FLAGS = ["--raw"]
 
 
 def get_date_taken(file_path):
@@ -124,13 +127,11 @@ def main(path: Path, prefix=False, raw=False):
 
 
 if __name__ == "__main__":
-    # command must be of type <path> [--prefix; optional] [--raw; optional]
-
     # check if script call has a path and all flags are valid
     try:
         assert len(sys.argv) > 2
         assert os.path.isdir(sys.argv[1])
-        assert all(flag in ["--raw"] for flag in sys.argv[2:])
+        assert all(flag in FLAGS for flag in sys.argv[2:])
 
     except AssertionError as exc:
         print("Please provide a valid path and flags")
