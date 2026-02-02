@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/bin/python3
+
 import sys
 import pathlib
 from PyPDF2 import PdfMerger
@@ -17,13 +18,12 @@ def main():
 
     output = sys.argv[1]
     inputs = sys.argv[2:]
-    
-    assert all(pathlib.isfile(inp) for inp in inputs), "Not all input files exist."
+    print(inputs)
+    assert all(pathlib.Path.is_file(inp) for inp in inputs), "Not all input files exist."
     assert all(pathlib.Path(inp).suffix.lower() == '.pdf' for inp in inputs), "All input files must be PDF files."
-    
+
     merge_pdfs(output, inputs)
     print(f"Merged {len(inputs)} files into {output}")
 
 if __name__ == "__main__":
     main()
-
