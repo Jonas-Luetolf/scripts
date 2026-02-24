@@ -8,6 +8,14 @@ description = "A personal collection of useful tools for file management, pdfs, 
 version = "1.0.0"
 requires-python = ">=3.10"
 
+dependencies = [
+    "PyMuPDF",
+    "pdf2image",
+    "Pillow",
+    "PyPDF2",
+    "opencv-python",
+]
+
 [project.scripts]
 truth-table = "mytools.scientific.truth_table:main"
 easter = "mytools.other.easter:main"
