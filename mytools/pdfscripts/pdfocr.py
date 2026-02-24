@@ -1,4 +1,4 @@
-#!/bin/python3
+from mytools.resources.argparser import parse_args
 import os
 import sys
 import subprocess
@@ -37,13 +37,14 @@ def ocr_pdf(input_pdf: str, output_pdf: str, lang: str = "deu", dpi: int = 300) 
         os.remove(os.path.join(temp_dir, f))
     os.rmdir(temp_dir)
 
+def main():
+    args, _ = parse_args()
+    assert len(sys.argv) == 2, "Usage: pdfocr <input_pdf> <output_pdf>"
 
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} <input_pdf> <output_pdf>")
-        sys.exit(-1)
-
-    input_pdf_path = sys.argv[1]
-    output_pdf_path = sys.argv[2]
+    input_pdf_path = args[0]
+    output_pdf_path = args[1]
 
     ocr_pdf(input_pdf_path, output_pdf_path)
+
+if __name__ == "__main__":
+    main()
