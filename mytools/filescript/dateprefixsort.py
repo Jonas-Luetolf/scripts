@@ -5,11 +5,30 @@ import re
 
 
 def is_valid_filename(file_path: Path) -> bool:
+    """
+    Check whether a file name starts with a date prefix (YYYYMMDD_).
+
+    Args:
+        file_path (Path): Path object representing the file.
+
+    Returns:
+        bool: True if the filename matches the expected pattern.
+    """
     file_name = file_path.name
     return re.match(r"^\d{8}_\w+", file_name) is not None
 
 
 def create_file_table(files: list) -> dict:
+    """
+    Group files by year and month based on their date prefix.
+
+    Args:
+        files (list[Path]): List of file paths to organize.
+
+    Returns:
+        dict[str, dict[str, list[Path]]]: Nested dictionary structured
+        as {year: {month: [files]}}.
+    """
     file_table = {}
 
     for file_path in files:
@@ -33,7 +52,14 @@ def create_file_table(files: list) -> dict:
     return file_table
 
 
-def sort_files_by_date(file_table: dict, path: Path):
+def sort_files_by_date(file_table: dict, path: Path) -> None:
+    """
+    Move files into year/month subdirectories.
+
+    Args:
+        file_table (dict): Nested dictionary from create_file_table().
+        path (Path): Base directory where folders will be created.
+    """
     for year in file_table.keys():
         for month in file_table[year].keys():
 
@@ -46,11 +72,16 @@ def sort_files_by_date(file_table: dict, path: Path):
                     file.rename(new_path / file.name)
 
 
-def organize_directory(path: Path):
+def organize_directory(path: Path) -> None:
+    """
+    Organize files in a directory into year/month folders.
+
+    Args:
+        path (Path): Directory containing files to organize.
+    """
     files = list(filter(lambda f: f.is_file(), path.iterdir()))
     file_table = create_file_table(files)
     sort_files_by_date(file_table, path)
-
 
 
 def main() -> int:
