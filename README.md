@@ -1,56 +1,15 @@
 # scripts
 
-My personal collection of small but useful scripts for Linux and general automation tasks.
-Some are general-purpose, others are tailored for Linux or for use with [rofi](https://github.com/davatorium/rofi).
+My personal collection of small but useful scripts for file management and general automation tasks.
 
-## Installation
+## Install
 
-### Prerequisites
-* Most scripts are written in python3: Ensure you have python3 installed.
-* For rofi-based scripts: `rofi` installed and available in your `$PATH`.
-* `bash` or another POSIX-compatible shell.
-* Python scripts may require additional packages. A requirements.txt file is provided for all Python dependencies.
-
-### Install Steps
-
-Clone the repository and run the installer:
+Manually download Repo and build using pip:
 
 ```bash
 git clone https://github.com/Jonas-Luetolf/scripts.git
-cd scripts
-chmod +x install.sh
-./install.sh [FLAGS]
+pip install -e .
 ```
-
-This will install the scripts to your system (default behavior depends on the flags provided).
-
----
-
-## Available Flags (from `install.sh`)
-
-| Flag              | Description                                                                                                                 |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `--linux`         | Installs the Linux-specific scripts (those in `linux` and `rofi-scripts`).                                                  |
-| `--linux-minimal` | Installs a reduced set of Linux scripts (only scripts in linux and rofi-scripts excluded).                                        |
-| `--all`           | Installs **all scripts**, including `linux` and `rofi-scripts`.                                                             |
-| `--no-<folder>`   | Excludes a specific folder from installation. Example: `--no-other` skips installing other folder. |
-
----
-
-## Example Installs
-
-Install all scripts for Linux (including rofi tools):
-
-```bash
-./install.sh --linux
-```
-
-Install only minimal Linux scripts (no rofi dependencies):
-
-```bash
-./install.sh --linux-minimal
-```
-
 
 ## File and Directory Utilities
 
@@ -71,22 +30,8 @@ Install only minimal Linux scripts (no rofi dependencies):
 | ---------------- | ------------------------------------------------------------------------------ |
 | **pdf2img**      | Converts PDF to image file.                                                    |
 | **pdfocr**       | Runs OCR (Optical Character Recognition) on PDF files to make them searchable. |
-| **pdfrotate180** | Rotates all pages in a PDF file by 180°.                                       |
 | **pdfrmmeta**    | Removes all metadata from a PDF file.                                          |
 | **pdfmerge**     | Merges multiple PDF files into a single PDF.                                   |
----
-
-## Rofi Scripts (Linux)
-
-*(Require `rofi` to be installed.)*
-
-| Script       | Description                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------- |
-| **nm-menu**  | Opens a rofi-based Wi-Fi selection menu to connect to networks (auto-prompts for password if required). |
-| **roficalc** | A rofi-powered calculator for quick calculations.                                                       |
-| **ssh-menu** | Quickly connect to known SSH hosts through rofi.                                                        |
-| **search**   | Opens a rofi prompt for searching the web via your default browser.                                     |
-
 ---
 
 ## Scientific
