@@ -3,47 +3,36 @@ import PyPDF2
 from pathlib import Path
 
 
-def remove_metadata(input_pdf_path, output_pdf_path):
+def remove_metadata(input_pdf_path:Path, output_pdf_path:Path) -> None:
     """
-    Entfernt alle Metadaten aus einer PDF-Datei.
+    Removes all metadata from the given PDF file
 
-    :param input_pdf_path: Pfad zur Eingabe-PDF-Datei
-    :param output_pdf_path: Pfad zur Ausgabe-PDF-Datei ohne Metadaten
+    Args:
+        input_pdf_path (Path): Path to the input PDF file
+        output_pdf_path (Path): Output PDF path
     """
-    try:
-        # Öffne die Eingabe-PDF-Datei
-        with open(input_pdf_path, 'rb') as input_pdf:
-            reader = PyPDF2.PdfReader(input_pdf)
-            writer = PyPDF2.PdfWriter()
+    with open(input_pdf_path, 'rb') as input_pdf:
+        reader = PyPDF2.PdfReader(input_pdf)
+        writer = PyPDF2.PdfWriter()
 
-            # Kopiere alle Seiten in einen neuen Writer
-            for page in reader.pages:
-                writer.add_page(page)
+        for page in reader.pages:
+            writer.add_page(page)
 
-            # Setze Metadaten auf ein leeres Dictionary
-            writer.add_metadata({})
+        writer.add_metadata({})
 
-            # Schreibe die Ausgabe-PDF-Datei
-            with open(output_pdf_path, 'wb') as output_pdf:
-                writer.write(output_pdf)
-
-        print(f"Alle Metadaten wurden erfolgreich aus {input_pdf_path} entfernt und in {output_pdf_path} gespeichert.")
-
-    except Exception as e:
-        print(f"Es gab ein Problem beim Entfernen der Metadaten: {e}")
+        with open(output_pdf_path, 'wb') as output_pdf:
+            writer.write(output_pdf)
 
 
 def main():
     args, _ = parse_args()
 
-    # Initial Checks
-    assert len(args) == 1, "Bitte geben Sie den Pfad zur Eingabe-PDF-Datei als Argument an."
+    assert len(args) == 1, "Usage: pdfrmmeta <input PDF file>"
+    
     input_pdf_path = args[0]
+    assert Path(input_pdf_path).is_file(), "PDF file does not exists"
+    assert Path(input_pdf_path).suffix.lower() == ".pdf", "The specified File has to be a PDF (.pdf) file"
 
-    assert Path(input_pdf_path).is_file(), "Die angegebene Eingabe-PDF-Datei existiert nicht."
-    assert Path(input_pdf_path).suffix.lower() == ".pdf", "Die Eingabedatei muss eine PDF-Datei sein."
-
-    # get input and output paths
     output_pdf_path = "no-meta-"+input_pdf_path
 
     remove_metadata(input_pdf_path, output_pdf_path)
