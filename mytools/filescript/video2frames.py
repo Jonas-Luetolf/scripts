@@ -1,7 +1,6 @@
-#!/bin/python
+from mytools.resources.argparser import parse_args
 import cv2
 import os
-import sys
 
 def video_to_frames(video_path, output_folder):
     # Überprüfen, ob das Video existiert
@@ -37,11 +36,17 @@ def video_to_frames(video_path, output_folder):
     cap.release()
     print(f"{frame_count} Frames wurden im Ordner '{output_folder}' gespeichert.")
 
-# Beispielaufruf
-if __name__ == "__main__":
-    assert len(sys.argv) == 3
-    assert sys.argv[1].endswith(".mp4")
-    video_path = sys.argv[1]   # Pfad zum Video
-    output_folder = sys.argv[2]
-    # Ordner, in dem die Frames gespeichert werden
+
+def main():
+    args, _ = parse_args()
+
+    assert len(args) == 2, "Es müssen genau zwei Argumente übergeben werden: <video_path> <output_folder>"
+    assert args[0].endswith(".mp4")
+    video_path = args[0]
+    output_folder = args[1]
+
     video_to_frames(video_path, output_folder)
+
+
+if __name__ == "__main__":
+    main()
