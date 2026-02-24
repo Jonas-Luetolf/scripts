@@ -1,9 +1,9 @@
 #!/bin/python
+from mytools.resources.argparser import parse_args
 from pathlib import Path
 import os
 from datetime import datetime
 import platform
-import sys
 
 from PIL import Image
 from PIL.ExifTags import TAGS
@@ -88,7 +88,7 @@ def is_image(path: Path):
     return any(str(path).upper().endswith(ext) for ext in IMAGE_FILE_TYPES)
 
 
-def main(path: Path, prefix=False, raw=False):
+def rename_images_in_directory(path: Path, prefix=False, raw=False):
     # get all files in the directory and sort them by creation date
     files = list(filter(is_image, os.listdir(path)))
     files = list(sorted(files, key=lambda x: get_image_creation_date(path / x)))
@@ -126,26 +126,15 @@ def main(path: Path, prefix=False, raw=False):
         i += 1
 
 
+def main():
+    args, opts = parse_args()
+
+    assert len(args) > 0, "Please provide a path to the directory"
+    path = Path(args[0])
+    assert path.is_dir(), "Provided path is not a directory"
+
+    rename_images_in_directory(path, "--prefix" in opts, "--raw" in opts)
+
+
 if __name__ == "__main__":
-    # check if script call has a path and all flags are valid
-    try:
-        assert len(sys.argv) > 2
-        assert os.path.isdir(sys.argv[1])
-        assert all(flag in FLAGS for flag in sys.argv[2:])
-
-    except AssertionError as exc:
-        print("Please provide a valid path and flags")
-        print(
-            "Usage: python imagerename.py <path> [--raw; optional]"
-        )
-        sys.exit(1)
-
-    path = Path(sys.argv[1])
-
-    # get flags
-    if len(sys.argv) > 2:
-        flags = sys.argv[2:]
-    else:
-        flags = []
-
-    main(path, "--prefix" in flags, "--raw" in flags)
+    main()
