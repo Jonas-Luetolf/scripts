@@ -1,0 +1,30 @@
+[build-system]
+requires = [ "setuptools>=64",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mytools"
+description = "A personal collection of useful tools for file management, pdfs, scientific things and more."
+version = "1.0.0"
+requires-python = ">=3.10"
+
+[project.scripts]
+truth-table = "mytools.scientific.truth_table:main"
+easter = "mytools.other.easter:main"
+dateprefixsort = "mytools.filescript.dateprefixsort:main"
+filenumberer = "mytools.filescript.filenumberer:main"
+rename = "mytools.filescript.rename:main"
+addprefix = "mytools.filescript.addprefix:main"
+imagerename = "mytools.filescript.imagerename:main"
+video2frames = "mytools.filescript.video2frames:main"
+confettigen = "mytools.grafics.confettigen:main"
+pdfmerge = "mytools.pdfscripts.pdfmerge:main"
+pdfocr = "mytools.pdfscripts.pdfocr:main"
+pdf2img = "mytools.pdfscripts.pdf2img:main"
+pdfrmmeta = "mytools.pdfscripts.pdfrmmeta:main"
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.setuptools.packages.find]
+where = [ ".",]
