@@ -39,7 +39,7 @@ def ocr_pdf(input_pdf: str, output_pdf: str, lang: str = "deu", dpi: int = 300) 
 
 def main():
     args, _ = parse_args()
-    assert len(sys.argv) == 2, "Usage: pdfocr <input_pdf> <output_pdf>"
+    assert len(args) == 2, "Usage: pdfocr <input_pdf> <output_pdf>"
 
     input_pdf_path = args[0]
     output_pdf_path = args[1]
