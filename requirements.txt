@@ -1,5 +1,0 @@
-fitz
-pdf2image
-Pillow
-PyPDF2
-opencv-python

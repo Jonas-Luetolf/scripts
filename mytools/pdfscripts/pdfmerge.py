@@ -1,8 +1,7 @@
-#!/bin/python3
-
-import sys
+from mytools.resources.argparser import parse_args
 import pathlib
 from PyPDF2 import PdfMerger
+
 
 def merge_pdfs(output, inputs):
     merger = PdfMerger()
@@ -12,18 +11,17 @@ def merge_pdfs(output, inputs):
     merger.close()
 
 def main():
-    if len(sys.argv) < 4:
-        print("Usage: pdfmerge output.pdf input1.pdf input2.pdf [input3.pdf ...]")
-        sys.exit(1)
+    args, _ = parse_args()
+    assert len(args) >= 3, "At least one output file and two input files are required."
 
-    output = sys.argv[1]
-    inputs = sys.argv[2:]
-    print(inputs)
-    assert all(pathlib.Path.is_file(inp) for inp in inputs), "Not all input files exist."
+    output = args[0]
+    inputs = args[1:]
+
     assert all(pathlib.Path(inp).suffix.lower() == '.pdf' for inp in inputs), "All input files must be PDF files."
 
     merge_pdfs(output, inputs)
     print(f"Merged {len(inputs)} files into {output}")
+
 
 if __name__ == "__main__":
     main()
