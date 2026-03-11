@@ -20,7 +20,14 @@ pip install -e .
 | **rename**         | Helps you rename all files in a directory, allowing suffix customization.                                                         |
 | **dateprefixsort** | Sorts all files whose names start with a date (`YYYYMMDD`) into corresponding folders.                                            |
 | **imagerename**    | Renames image files based on EXIF or file creation date to `YYYYMMDD_<img_number_per_day>` `--raw` flag renames both the .JPG and .CR2 file.                                  |
-| **video2frames** | Extracts frames from a video file and saves them as images.                                                                         |
+| **video2frames**   | Extracts frames from a video file and saves them as images.                                                                       |
+
+
+## Grafics Tools
+| Script             | Description                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------- |
+| **confettigen**    | Generates a quadratic SVG with some randomly generated confetti.                              |
+
 
 ---
 
@@ -32,6 +39,7 @@ pip install -e .
 | **pdfocr**       | Runs OCR (Optical Character Recognition) on PDF files to make them searchable. |
 | **pdfrmmeta**    | Removes all metadata from a PDF file.                                          |
 | **pdfmerge**     | Merges multiple PDF files into a single PDF.                                   |
+| **pdfpagemove**  | Moves a specific page or range of pages in a PDF file to a new position.       |
 ---
 
 ## Scientific
