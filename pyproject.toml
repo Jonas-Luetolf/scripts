@@ -30,6 +30,7 @@ pdfmerge = "mytools.pdfscripts.pdfmerge:main"
 pdfocr = "mytools.pdfscripts.pdfocr:main"
 pdf2img = "mytools.pdfscripts.pdf2img:main"
 pdfrmmeta = "mytools.pdfscripts.pdfrmmeta:main"
+pdfpagemove = "mytools.pdfscripts.pdfpagemove:main"
 
 [tool.setuptools.package-dir]
 "" = "."
