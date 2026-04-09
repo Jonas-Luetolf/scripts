@@ -1,6 +1,9 @@
-from os import listdir
+from os import listdir, rename, getcwd
 from os.path import isfile
-import os
+from sys import argv
+from pathlib import Path
+
+from mytools.resources.argparser import parse_args
 
 
 def get_filetype(filename: str):
@@ -13,26 +16,32 @@ def get_filename(index, name_len):
     return zeros + str(index)
 
 
-def number_files(path):
-    files = [f for f in listdir(path) if isfile(path + f)]
+def number_files(path, offset=0):
+    files = [f for f in listdir(path) if isfile(path / f)]
     files.sort()
 
     name_len = len(str(len(files)))
     new_names = [
-        f"{get_filename(index,name_len)}{get_filetype(name)}"
+        f"{get_filename(index + offset,name_len)}{get_filetype(name)}"
         for index, name in enumerate(files)
     ]
 
-    print(",".join(new_names))
+    for original, new in zip(files, new_names):
+        print(f"{original} -> {new}")
 
     if input("This are the new filenames, do you want to continue? (y|N)") == "y":
         for original, new in zip(files, new_names):
-            os.system(f"mv {path}{original} {path}{new}")
+            print(f"Renaming {original} to {new}")
+            rename(path / original, path / new)
 
 
 def main():
-    path = os.getcwd() + "/"
-    number_files(path)
+    args, opts = parse_args(argv[1:])
+
+    path = Path(args[0]) if len(args) > 0 else Path(getcwd())
+    offset = int(opts["offset"]) if "offset" in opts else 0
+
+    number_files(Path(path), offset)
 
 
 if __name__ == "__main__":
